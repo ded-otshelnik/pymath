@@ -4,11 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = 'pymath-dot'
+version = '0.1.2'
+description = "A study math package."
+readme = "README.md"
 requires-python = '>=3.10.0'
-version = '0.1.1'
 dependencies = [
     'sympy>=1.9'
 ]
 
 [project.urls]
-repository = 'https://github.com/ded-otshelnik/pymath'
+repository = 'https://github.com/ded-otshelnik/pymath-git'

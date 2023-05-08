@@ -1,1 +1,1 @@
-from core.matrix import dot
+from matrix import dot
