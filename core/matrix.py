@@ -101,4 +101,3 @@ def dot(A:list[list[float]] | list[list[int]], B:list[list[float]] | list[list[i
             # append product of current column and row
             result[len(result)-1].append(sum([a*b for a,b in zip(row,column)]))  
     return result
-

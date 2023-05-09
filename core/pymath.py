@@ -1,11 +1,11 @@
 from typing import Callable
-from sympy import symbols, Poly, factorial
 import math
 
 def cos(x:float,n:int)->float:
     '''
         Function computes value of cos(x) as Taylor series,
         returns value with accuracy of n parts of series.
+
         Necessary keyword arguments:
         x: argument of cos function
         n: value of series parts   
@@ -22,8 +22,6 @@ def cos(x:float,n:int)->float:
 
 def sqrt(x:float|complex, approx:int = 10)->float|complex:
     '''
-    sqrt(x:float|complex, approx:int = 10)->float|complex
-    
     Function computes square root of float or complex number
     
     Necessary keyword arguments:
@@ -67,8 +65,6 @@ CENTER_RECT = "c"
 
 def rect_integral(f:Callable[[float], float], a:float, b:float, n:int, method:str = "l")->float:
     '''
-    rect_integral(f:Callable[[float], float], a:float, b:float, n:int, method = LEFT_RECT)->float
-
     Computes integral of function f on an interval from a(includive) to b(includive)
     with number of splits n using rectangle method. 
 
@@ -103,7 +99,7 @@ def rect_integral(f:Callable[[float], float], a:float, b:float, n:int, method:st
             value = (a + i * h + a + (i + 1) * h) / 2
         # if incorrect argument of method
         else:
-            raise ValueError
+            raise ValueError("incorrect argument of integration method")
         
         result += f(value) 
     
@@ -111,8 +107,6 @@ def rect_integral(f:Callable[[float], float], a:float, b:float, n:int, method:st
 
 def newton(x:list,y:list[float]):
     '''
-    newton(x:list,y:list[float]) -> Poly
-
     Computes newton polynomial of function that is defined as lists of arguments and values.
 
     Necessary keyword arguments:
@@ -123,15 +117,18 @@ def newton(x:list,y:list[float]):
     '''
 
     # Check before running
-    assert len(x) == len(y), f"Imcopatible length: {len(x)} != {len(y)}"
-    assert len(x) != 0, "Lists mustn't be empty."
+    if len(x) != len(y):
+        raise ValueError(f"Imcopatible length: {len(x)} != {len(y)}")
+    if len(x) == 0:
+        raise ValueError("Lists mustn't be empty.")
     for item in x:
-        assert isinstance(item, float), "Arguments must be float."
+        if not isinstance(item, float):
+            raise TypeError("Arguments must be float.")
 
     # Newton polynomial is a sum of values a_i * w
     # where w is a product of (x - x[i-1]) 
     # and a_k is coefficient
-
+    from sympy import symbols, Poly, factorial
     # binomial coefficients for a_i computing 
     def c_coeff(i):
         c = []
@@ -158,10 +155,8 @@ def newton(x:list,y:list[float]):
     # Return polynomial with x variable
     return Poly(temp,X)
 
-def lagrange(x:list,y:list[float]) -> Poly:
+def lagrange(x:list,y:list[float]):
     '''
-    lagrange(x:list,y:list[float]) -> Poly
-
     Computes lagrange polynomial of function that is defined as lists of arguments and values.
 
     Necessary keyword arguments:
@@ -170,13 +165,16 @@ def lagrange(x:list,y:list[float]) -> Poly:
     -----
     Return - an Poly object (defined in sympy module) 
     '''
-
     # Check before running
-    assert len(x) == len(y), f"Imcopatible length: {len(x)} != {len(y)}"
-    assert len(x) != 0, "Lists mustn't be empty."
+    if len(x) != len(y):
+        raise ValueError(f"Imcopatible length: {len(x)} != {len(y)}")
+    if len(x) == 0:
+        raise ValueError("Lists mustn't be empty.")
     for item in x:
-        assert isinstance(item, float), "Arguments must be float."
+        if not isinstance(item, float):
+            raise ValueError("Arguments must be float.")
 
+    from sympy import symbols, Poly
     # Parametrization of variable
     _x = symbols('x')
 
@@ -226,4 +224,3 @@ def linspace(start:float,stop:float,num:int)->list:
         # reverse result list
         result.reverse()
     return result
-
