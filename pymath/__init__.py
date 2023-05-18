@@ -1,8 +1,8 @@
-from .lagrange import lagrange
-from .linspace import linspace
-from .newton import newton
-from .rect_integral import rect_integral,LEFT_RECT,RIGHT_RECT,CENTER_RECT
-from .sqrt import sqrt
-from .cos import cos
+from pymath.lagrange import lagrange
+from pymath.linspace import linspace
+from pymath.newton import newton
+from pymath.rect_integral import rect_integral,LEFT_RECT,RIGHT_RECT,CENTER_RECT
+from pymath.sqrt import sqrt
+from pymath.cos import cos
 
-from . import matrix
+from pymath import matrix
