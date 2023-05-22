@@ -5,8 +5,6 @@ import matplotlib.pyplot as plt
 
 def lagrange(x:list,y:list[float]) -> Poly:
     '''
-    lagrange(x:list,y:list[float]) -> Poly
-
     Computes lagrange polynomial of function that is defined as lists of arguments and values.
 
     Necessary keyword arguments:

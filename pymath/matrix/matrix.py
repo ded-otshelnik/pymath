@@ -3,17 +3,39 @@ from .transpose import transpose
 from .matrix_iter import MatrixIter
 from typing import Iterable
 
+from .matrix_typing import scalar
+
 class Matrix(Iterable):
     """
     Class represents 2-d matrix and operations related to matrixes.
     """
     def __init__(self, matrix):
-        # TODO: add error throwing and check
+        # checking for not empty matrixes
+        check_not_empty = False in [len(row)!= 0 for row in matrix]
+        
+        if check_not_empty or len(matrix) == 0:
+            raise ValueError("matrixes mustn't be empty.")
+        
+        # checking dimentions and align
+
+        check_dim = False in [len(matrix[i])==len(matrix[i-1]) for i in range(1,len(matrix))]
+
+        for row in matrix:
+            for val in row:
+                if not isinstance(val,scalar):
+                    raise TypeError("Values of matrix must be scalar")
+
+        if check_dim :
+            raise ValueError("shapes not aligned")
+        
         self._matrix = matrix
         self._shape = (len(matrix),len(matrix[0]))
         
     def __eq__(self, other_matrix):
-        # TODO: add error throwing and check
+        if not isinstance(other_matrix,Matrix) and other_matrix != None:
+            raise ValueError("Matrix can be compared only with matrixes")
+        elif other_matrix == None:
+            return False
         for value1,value2 in zip(self,other_matrix):
             if value1 != value2:
                 return False
@@ -49,7 +71,8 @@ class Matrix(Iterable):
         return Matrix(transpose(self._matrix))
 
     def add(self,other_matrix):
-        # TODO: add error throwing and check
+        if not isinstance(other_matrix,Matrix):
+            raise ValueError("Argument must be a matrix")
         result = []
         # loop by rows of two matrixes
         for row1, row2 in zip(self,other_matrix):
@@ -61,7 +84,8 @@ class Matrix(Iterable):
         return Matrix(result)
     
     def dot(self,other_matrix):
-        # TODO: add error throwing and check
+        if not isinstance(other_matrix,Matrix):
+            raise ValueError("Argument must be a matrix")
         result = []
         for row in self:
             result.append([])

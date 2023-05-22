@@ -7,8 +7,6 @@ CENTER_RECT = "c"
 
 def rect_integral(f:Callable[[float], float], a:float, b:float, n:int, method:str = "l")->float:
     '''
-    rect_integral(f:Callable[[float], float], a:float, b:float, n:int, method = LEFT_RECT)->float
-
     Computes integral of function f on an interval from a(includive) to b(includive)
     with number of splits n using rectangle method. 
 

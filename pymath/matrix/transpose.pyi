@@ -1,5 +1,3 @@
-from typing import TypeAlias
-
-MatrixLike: TypeAlias = list[list]
+from pymath.matrix.matrix_typing import MatrixLike
 
 def transpose(A:MatrixLike) -> MatrixLike: ...

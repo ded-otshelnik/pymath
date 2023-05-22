@@ -1,6 +1,3 @@
-from typing import TypeAlias
-
-scalar: TypeAlias = int | float | complex
-MatrixLike: TypeAlias = list[list[scalar]]
+from pymath.matrix.matrix_typing import MatrixLike
 
 def add(A: MatrixLike, B: MatrixLike) -> MatrixLike: ...

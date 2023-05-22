@@ -6,8 +6,6 @@ import matplotlib.pyplot as plt
 
 def newton(x:list,y:list[float]):
     '''
-    newton(x:list,y:list[float]) -> Poly
-
     Computes newton polynomial of function that is defined as lists of arguments and values.
 
     Necessary keyword arguments:

@@ -26,10 +26,6 @@ def dot(A, B):
 
     if not isinstance(A,Matrix) or not isinstance(B,Matrix):
         raise ValueError("Arguments must be matrixes")
-    for row1,row2 in zip(A,B):
-        for val1,val2 in zip(row1,row2):
-            if not isinstance(val1,scalar) or not isinstance(val1,scalar):
-                raise TypeError("Values of matrixes must be scalar")
 
     # transposing B matrix before multiplying 
     B = transpose(B)

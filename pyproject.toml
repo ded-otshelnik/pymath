@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = 'pymath-budnikov-as'
-version = '0.1.5'
+version = '0.1.7'
 description = "A study math package."
 readme = "README.md"
 requires-python = '>=3.10.0'
