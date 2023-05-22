@@ -1,15 +1,15 @@
-def transpose(A:list[list])->list[list]:
+def transpose(matrix):
     """
-    Function returns a transposed matrix
+    Function returns a transposed matrix.
 
     Args:
-        A (list[list]): matrix
+        matrix: MatrixLike, matrix.
 
     Returns:
-        list[list]: transposed matrix
+        MatrixLike: transposed matrix.
     """
 
-    return list(list(row) for row in zip(*A))
+    return list(list(row) for row in zip(*matrix))
 
 if __name__ == "__main__":
     A = [[1,2,3],[4,5,6]]

@@ -1,33 +1,35 @@
-def add(A:list[list[float]] | list[list[int]], B:list[list[float]] | list[list[int]])->list[list]:
+from .matrix import Matrix
+
+from typing import TypeAlias
+
+scalar: TypeAlias = int | float | complex
+MatrixLike: TypeAlias = list[list[scalar]]
+
+def add(A, B):
     """
     Function computes product of two matrixes.    
 
     Args:
-        A (list[list[float]] | list[list[int]]): first matrix 
+        A Matrix: first matrix 
         
-        B (list[list[float]] | list[list[int]]): second matrix
+        B Matrix: second matrix
 
     Raises:
         ValueError: if dimentions are not aligned
         TypeError: if types are unsupposed for + or *
 
     Returns:
-        list[list]: product of matrix multiplying
+        Matrix: product of matrix multiplying
     """
     # checking block
 
-    # checking for not empty matrixes
-    check_not_empty_A = False in [len(row)!= 0 for row in A]
-    check_not_empty_B = False in [len(row)!= 0 for row in B]
+    if not isinstance(A,Matrix) or not isinstance(B,Matrix):
+        raise ValueError("Arguments must be matrixes")
     
-    if check_not_empty_A or check_not_empty_B or len(A) == len(B) == 0:
-        raise ValueError("matrixes mustn't be empty.")
-    
-    # checking dimentions and align
-
-    check_dim_A = False in [len(A[i])==len(A[i-1]) for i in range(1,len(A))]
-    if check_dim_A or len(A) != len(B):
-        raise ValueError("uncombatible matrixes: shapes are not equal")
+    for row1,row2 in zip(A,B):
+        for val1,val2 in zip(row1,row2):
+            if not isinstance(val1,scalar) or not isinstance(val1,scalar):
+                raise TypeError("Values of matrixes must be scalar")
 
     result = []
     # loop by rows of two matrixes
@@ -37,11 +39,11 @@ def add(A:list[list[float]] | list[list[int]], B:list[list[float]] | list[list[i
         for item1, item2 in zip(row1,row2):
             # add sum of items
             result[len(result)-1].append(item1 + item2)
-    return result
+    return Matrix(result)
 
 if __name__ == "__main__":
-    A = [[1,2,3], [4,5,6]]
-    B = [[1,2,3], [4,5,6]]
+    A = Matrix([[1,2,3], [4,5,6]])
+    B = Matrix([[1,2,3], [4,5,6]])
     print(add(A, B))
     import numpy as np
     print(np.add(A, B))  
