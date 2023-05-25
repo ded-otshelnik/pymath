@@ -39,5 +39,6 @@ if __name__ == "__main__":
     print(n2)
     print(len(n1))
     print(len(n2))
+    n2.reverse()
     for i,j in zip(n1,n2):
         print(i == j)

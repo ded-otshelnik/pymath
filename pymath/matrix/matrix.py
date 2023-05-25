@@ -71,6 +71,19 @@ class Matrix(Iterable):
         return Matrix(transpose(self._matrix))
 
     def add(self,other_matrix):
+        """
+        Function computes product of two matrixes.    
+
+        Args:
+            other_matrix: Matrix: second matrix
+
+        Raises:
+            ValueError: if dimentions are not aligned
+            TypeError: if types are unsupposed for + or *
+
+        Returns:
+            Matrix: product of matrix multiplying
+        """
         if not isinstance(other_matrix,Matrix):
             raise ValueError("Argument must be a matrix")
         result = []
@@ -84,6 +97,20 @@ class Matrix(Iterable):
         return Matrix(result)
     
     def dot(self,other_matrix):
+        """
+        Method computes product of two matrixes.    
+        
+        Args:
+            
+            other_matrix: Matrix: second matrix
+
+        Raises:
+            ValueError: if dimentions are not aligned
+            TypeError: if types are unsupposed for + or *
+
+        Returns:
+            Matrix: product of matrix multiplying
+        """
         if not isinstance(other_matrix,Matrix):
             raise ValueError("Argument must be a matrix")
         result = []

@@ -41,7 +41,7 @@ def rect_integral(f:Callable[[float], float], a:float, b:float, n:int, method:st
             value = (a + i * h + a + (i + 1) * h) / 2
         # if incorrect argument of method
         else:
-            raise ValueError
+            raise ValueError("Incorrect argument: method")
         
         result += f(value) 
     

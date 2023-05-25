@@ -14,9 +14,13 @@ matrix - provide matrixes and related operations
 Functions
 ----
 cos - cos by Taylor series
+
 lagrange - interpolation polynomial by Lagrange
+
 newton - interpolation polynomial by Newton
+
 rect_integral - integrate by rectangle method
+
 linspace - evenly spaced numbers over a specified interval
 """
 

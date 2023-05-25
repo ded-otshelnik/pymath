@@ -1,7 +1,9 @@
-from sympy import symbols, Poly
+from sympy import symbols, Poly, Expr
 
 import numpy as np
 import matplotlib.pyplot as plt
+
+from pymath.matrix.matrix_typing import scalar
 
 def lagrange(x:list,y:list[float]) -> Poly:
     '''
@@ -15,10 +17,13 @@ def lagrange(x:list,y:list[float]) -> Poly:
     '''
 
     # Check before running
-    assert len(x) == len(y), f"Imcopatible length: {len(x)} != {len(y)}"
-    assert len(x) != 0, "Lists mustn't be empty."
+    if len(x) != len(y):
+        raise ValueError(f"Imcompatible length: {len(x)} != {len(y)}")
+    if len(x) == 0:
+        raise ValueError("Lists mustn't be empty.")
     for item in x:
-        assert isinstance(item, float), "Arguments must be float."
+        if not isinstance(item, scalar):
+            raise TypeError("Arguments must be float.")
 
     # Parametrization of variable
     _x = symbols('x')
@@ -36,7 +41,7 @@ def lagrange(x:list,y:list[float]) -> Poly:
         temp += y[i] * nominator/denominator
 
     # Return polynomial with x variable
-    return Poly(temp, x)
+    return Poly(temp)
 
 if __name__ == "__main__":
     f = lambda x: np.sin(x)

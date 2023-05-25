@@ -4,6 +4,8 @@ from sympy import symbols, Poly, factorial
 
 import matplotlib.pyplot as plt
 
+from pymath.matrix.matrix_typing import scalar
+
 def newton(x:list,y:list[float]):
     '''
     Computes newton polynomial of function that is defined as lists of arguments and values.
@@ -16,10 +18,13 @@ def newton(x:list,y:list[float]):
     '''
 
     # Check before running
-    assert len(x) == len(y), f"Imcopatible length: {len(x)} != {len(y)}"
-    assert len(x) != 0, "Lists mustn't be empty."
+    if len(x) != len(y):
+        raise ValueError(f"Imcompatible length: {len(x)} != {len(y)}")
+    if len(x) == 0:
+        raise ValueError("Lists mustn't be empty.")
     for item in x:
-        assert isinstance(item, float), "Arguments must be float."
+        if not isinstance(item, scalar):
+            raise TypeError("Arguments must be float.")
 
     # Newton polynomial is a sum of values a_i * w
     # where w is a product of (x - x[i-1]) 
@@ -49,7 +54,7 @@ def newton(x:list,y:list[float]):
         temp += a*w
 
     # Return polynomial with x variable
-    return Poly(temp,X)
+    return Poly(temp)
 
 if __name__ == "__main__":
     f = lambda x: np.sin(x)
